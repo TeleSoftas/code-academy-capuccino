@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico"/>
+
+    <title>Cappuccino</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row main-header">
+            <h3 class="col-lg-10">Cappuccino kavos skaičiuoklė</h3>
+            <a class="col-lg-2" href="#ts"><img src="/images/Telesoftas_logo.png"/></a>
+        </div>
+
+        <div class="jumbotron row">
+            <div class="col-lg-4 col-border-right">
+                <p class="title">Mano vidutinis per dieną išgeriamų kavos puodelių skaičius:</p>
+                <p class="big-number" th:text="*{cappuccino.myCupsNum}"/>
+                <form action="#" th:action="@{/cappuccino}" th:object="${cappuccino}" method="post">
+                    <p class="center"><input class="btn btn-lg btn-success" type="submit" name="calculate" value="Šliurpt!" /></p>
+                    <p class="center"><input class="btn btn-lg btn-reset" type="submit" name="reset" value="Iš naujo!" /></p>
+                </form>
+            </div>
+            <div class="col-lg-4 col-border-right">
+                <p class="label">Mano per dieną suvartojamas kavos kiekis (g):</p>
+                <p class="number vertical-distance-1" th:text="${#numbers.formatDecimal(cappuccino.myCoffeeAmount, 1, 'DEFAULT', 2, 'DEFAULT')}" />
+                <p class="label">Mano per dieną suvartojamas pieno kiekis (ml):</p>
+                <p class="number vertical-distance-1" th:text="${#numbers.formatDecimal(cappuccino.myMilkAmount, 1, 'DEFAULT', 2, 'DEFAULT')}"/>
+            </div>
+            <div class="col-lg-4">
+                <p class="label">Vidutinis per dieną suvartojamas kavos kiekis, tenkantis vienam Telesofto darbuotojui* (g):</p>
+                <p class="number vertical-distance-2" th:text="${#numbers.formatDecimal(cappuccino.averageCoffeeAmount, 1, 'DEFAULT', 2, 'DEFAULT')}"/>
+                <p class="label">Vidutinis per dieną suvartojamas pieno kiekis, tenkantis vienam Telesofto darbuotojui* (ml):</p>
+                <p class="number vertical-distance-2" th:text="${#numbers.formatDecimal(cappuccino.averageMilkAmount, 1, 'DEFAULT', 2, 'DEFAULT')}"/>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <p>* Nepamiršk įtraukti ir savęs!</p>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; Telesoftas 2017</p>
+        </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body>
+</html>
